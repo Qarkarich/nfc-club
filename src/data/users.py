@@ -6,7 +6,7 @@ import datetime
 
 
 class User(SqlAlchemyBase, UserMixin):
-    __tablename__ = 'users'
+    __tablename__ = "users"
 
     id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
     name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
