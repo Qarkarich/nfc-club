@@ -1,4 +1,4 @@
-from .db_sessions import SqlAlchemyBase
+from .db_session import SqlAlchemyBase
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 import sqlalchemy
