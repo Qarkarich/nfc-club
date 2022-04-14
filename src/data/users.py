@@ -1,19 +1,17 @@
 from .db_session import SqlAlchemyBase
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
-import sqlalchemy
-import datetime
+# from flask_login import UserMixin
+import sqlalchemy as sa
+import datetime as dt
 
 
-class User(SqlAlchemyBase, UserMixin):
+class User(SqlAlchemyBase):
     __tablename__ = "users"
 
-    id = sqlalchemy.Column(sqlalchemy.Integer, primary_key=True, autoincrement=True)
-    name = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    surname = sqlalchemy.Column(sqlalchemy.String, nullable=False)
-    age = sqlalchemy.Column(sqlalchemy.Integer, nullable=True)
-    hashed_password = sqlalchemy.Column(sqlalchemy.String)
-    modified_data = sqlalchemy.Column(sqlalchemy.DateTime, default=datetime.datetime.now())
+    id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
+    name = sa.Column(sa.String, nullable=True)
+    hashed_password = sa.Column(sa.String)
+    modified_data = sa.Column(sa.DateTime, default=dt.datetime.now())
 
     def set_password(self, password):
         self.hashed_password = generate_password_hash(password)
