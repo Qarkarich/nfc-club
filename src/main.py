@@ -15,10 +15,16 @@ def load_user(user_id):
     return db_sess.query(User).get(user_id)
 
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect('/')
+
+
 @app.route("/")
 def index():
     if current_user.is_authenticated:
-        return ":)))"
+        return render_template("base.html")
     else:
         return ":((("
 
