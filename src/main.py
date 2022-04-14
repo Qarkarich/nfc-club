@@ -24,9 +24,9 @@ def logout():
 @app.route("/")
 def index():
     if current_user.is_authenticated:
-        return render_template("base.html")
+        return render_template("index.html", title="Главная")
     else:
-        return ":((("
+        return render_template("index_unauth.html", title="Авторизируйтесь или зарегистрируйтесь ")
 
 
 @app.route("/register", methods=["GET", "POST"])
