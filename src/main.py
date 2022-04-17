@@ -83,7 +83,7 @@ def card_settings(card_id):
     if not card or not current_user.is_get_card(card):
         return redirect("/")
 
-    return str(card.name)
+    return render_template("card_settings.html", title=f"Настройка карты #{card.id}", card=card)
 
 
 def main():
