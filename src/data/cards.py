@@ -14,4 +14,4 @@ class Card(SqlAlchemyBase):
     phone = sa.Column(sa.String, nullable=True)
     created_data = sa.Column(sa.DateTime, default=dt.datetime.now)
 
-    users = orm.relation("User")
+    user = orm.relation("User")
