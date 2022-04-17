@@ -3,14 +3,11 @@
 {% block content %}
 
 <main class="main-layout">
-    <h2>А вот тут карточки</h2>
-    <div id="cards">
-        {% for card in cards %}
-            <p>
-                {{ card.id }} <br/>
-                <a href="card/{{ card.id }}">{{ card.name }}</a>
-            </p>
-        {% endfor %}
+    <h2>Карта #{{ card.id }}</h2>
+    <div id="settings">
+        ID карты: #{{ card.id }} <br/>
+        Название карты: {{ card.name }} <br/>
+        Владелец карты: {{ card.user.name }}
     </div>
 </main>
 
