@@ -3,6 +3,7 @@ from flask_login import LoginManager, login_user, logout_user, current_user
 from data import db_session
 from forms.user import RegisterForm, LoginForm
 from data.users import User
+from data.cards import Card
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "qwaszxer"
@@ -24,7 +25,7 @@ def logout():
 @app.route("/")
 def index():
     if current_user.is_authenticated:
-        return render_template("index.html", title="Главная")
+        return render_template("index.html", title="Главная", cards=current_user.cards)
     else:
         return render_template("index_unauth.html", title="Авторизируйтесь или зарегистрируйтесь ")
 
@@ -72,6 +73,17 @@ def login():
                                message="Неправильный логин или пароль",
                                form=form)
     return render_template("login.html", title="Авторизация", form=form)
+
+
+@app.route("/card/<int:card_id>")
+def card_settings(card_id):
+    db_sess = db_session.create_session()
+    card = db_sess.query(Card).get(card_id)
+
+    if not card or not current_user.is_get_card(card):
+        return redirect("/")
+
+    return str(card.name)
 
 
 def main():
