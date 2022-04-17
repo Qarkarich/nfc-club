@@ -10,6 +10,11 @@ app.config["SECRET_KEY"] = "qwaszxer"
 login_manager = LoginManager()
 
 
+@app.errorhandler(404)
+def not_found_error(error):
+    return redirect("/")
+
+
 @login_manager.user_loader
 def load_user(user_id):
     db_sess = db_session.create_session()
@@ -77,6 +82,9 @@ def login():
 
 @app.route("/card/<int:card_id>")
 def card_settings(card_id):
+    if not current_user.is_authenticated:
+        return redirect("/")
+
     db_sess = db_session.create_session()
     card = db_sess.query(Card).get(card_id)
 
