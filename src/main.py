@@ -1,3 +1,4 @@
+import flask_login
 from flask import Flask, render_template, redirect
 from flask_login import LoginManager, login_user, logout_user, current_user
 from data import db_session
@@ -92,6 +93,12 @@ def card_settings(card_id):
         return redirect("/")
 
     return render_template("card_settings.html", title=f"Настройка карты #{card.id}", card=card)
+
+
+@flask_login.login_required
+@app.route('/profile')
+def check_profile():
+    return render_template("profile_view.html", title=f"Просмотр профиля", user=current_user)
 
 
 def main():
