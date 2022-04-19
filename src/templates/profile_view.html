@@ -6,7 +6,7 @@
     <h1>Мой профиль</h1>
     <h2>Имя: {{ current_user.name }}</h2>
     <h3>Почта: {{ current_user.email }}</h3>
-    <button><h3>Изменить пароль</h3></button>
+    <a href="/profile/edit"><h3>Редактировать профиль</h3></a>
 </div>
 
 {% endblock %}
