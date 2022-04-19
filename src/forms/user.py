@@ -19,6 +19,9 @@ class LoginForm(FlaskForm):
 
 
 class EditForm(FlaskForm):
-    name = StringField("Имя аыфафы")
+    name = StringField("Имя пользователя")
     email = EmailField("Почта")
-    submit = SubmitField("Войти")
+    old_password = PasswordField("Старый пароль")
+    new_password = PasswordField("Новый пароль")
+    new_password_again = PasswordField("Новый пароль ещё раз")
+    submit = SubmitField("Подтвердить изменения")
