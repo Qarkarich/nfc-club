@@ -112,8 +112,18 @@ def edit_profile():
         db_sess = db_session.create_session()
         user = db_sess.query(User).filter(User.id == current_user.id).first()
         if user:
+            if form.new_password.data != "" or form.old_password.data != "":
+                if not user.check_password(form.old_password.data):
+                    return render_template("profile_edit.html", title="Редактировать профиль",
+                                           form=form, message="Старый пароль введен некорректно")
+                if form.new_password.data != form.new_password_again.data:
+                    return render_template("profile_edit.html", title="Редактировать профиль",
+                                           form=form, message="Введенные пароли не совпадают")
+                user.set_password(form.new_password.data)
+
             user.name = form.name.data
             user.email = form.email.data
+
             db_sess.commit()
             return redirect("/")
         else:
