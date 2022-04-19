@@ -1,8 +1,8 @@
 import flask_login
-from flask import Flask, render_template, redirect
+from flask import Flask, render_template, redirect, request, abort
 from flask_login import LoginManager, login_user, logout_user, current_user
 from data import db_session
-from forms.user import RegisterForm, LoginForm
+from forms.user import RegisterForm, LoginForm, EditForm
 from data.users import User
 from data.cards import Card
 
@@ -96,9 +96,30 @@ def card_settings(card_id):
 
 
 @flask_login.login_required
-@app.route('/profile')
+@app.route("/profile")
 def check_profile():
     return render_template("profile_view.html", title=f"Просмотр профиля", user=current_user)
+
+
+@flask_login.login_required
+@app.route("/profile/edit", methods=["GET", "POST"])
+def edit_profile():
+    form = EditForm()
+    if request.method == "GET":
+        form.email.data = current_user.email
+        form.name.data = current_user.name
+    if form.validate_on_submit():
+        db_sess = db_session.create_session()
+        user = db_sess.query(User).filter(User.id == current_user.id).first()
+        if user:
+            user.name = form.name.data
+            user.email = form.email.data
+            db_sess.commit()
+            return redirect("/")
+        else:
+            return abort(404)
+
+    return render_template("profile_edit.html", title="Редактировать профиль", form=form)
 
 
 def main():
