@@ -8,22 +8,15 @@
     <hr>
     <br>
 
-    <h2>Информация</h2>
-    <div id="settings">
-        ID карты: #{{ card.id }} <br/>
-        Название карты: {{ card.name }} <br/>
-        Владелец карты: {{ card.user.name }}
-    </div>
+    <h2>Настройки</h2>
 
-    <hr>
     <br>
 
-    <h2>Настройки</h2>
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
             {{ form.name.label }}<br>
-            {{ form.name(class="form-control") }}<br>
+            {{ form.name(class="form-control") }}
             {% for error in form.name.errors %}
                 <p class="alert alert-danger" role="alert">
                     {{ error }}
@@ -31,8 +24,44 @@
             {% endfor %}
         </p>
         <p>
+            {{ form.title.label }}<br>
+            {{ form.title(class="form-control") }}
+            {% for error in form.title.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.link.label }}<br>
+            {{ form.link(class="form-control") }}
+            {% for error in form.link.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.link_title.label }}<br>
+            {{ form.link_title(class="form-control") }}
+            {% for error in form.link_title.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.main.label }}<br>
+            {{ form.main(class="form-control") }}
+            {% for error in form.main.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
             {{ form.description.label }}<br>
-            {{ form.description(class="form-control") }}<br>
+            {{ form.description(class="form-control") }}
             {% for error in form.description.errors %}
                 <p class="alert alert-danger" role="alert">
                     {{ error }}
@@ -41,8 +70,53 @@
         </p>
         <p>
             {{ form.phone.label }}<br>
-            {{ form.phone(class="form-control") }}<br>
+            {{ form.phone(class="form-control") }}
             {% for error in form.phone.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.mail.label }}<br>
+            {{ form.mail(class="form-control") }}
+            {% for error in form.mail.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.site_vk.label }}<br>
+            {{ form.site_vk(class="form-control") }}
+            {% for error in form.site_vk.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.site_instagram.label }}<br>
+            {{ form.site_instagram(class="form-control") }}
+            {% for error in form.site_instagram.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.site_telegram.label }}<br>
+            {{ form.site_telegram(class="form-control") }}
+            {% for error in form.site_telegram.errors %}
+                <p class="alert alert-danger" role="alert">
+                    {{ error }}
+                </p>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.site_discord.label }}<br>
+            {{ form.site_discord(class="form-control") }}
+            {% for error in form.site_discord.errors %}
                 <p class="alert alert-danger" role="alert">
                     {{ error }}
                 </p>
