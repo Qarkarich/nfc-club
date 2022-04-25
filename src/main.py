@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, abort
 from flask_login import LoginManager, login_user, logout_user, current_user
 from data import db_session
 from forms.user import RegisterForm, LoginForm, EditForm
-from forms.card import CardForm
+# from forms.card import CardForm
 from data.users import User
 from data.cards import Card
 
@@ -83,26 +83,26 @@ def login():
 
 
 @flask_login.login_required
-@app.route("/card/<int:card_id>", methods=["GET", "POST"])
+@app.route("/card/<int:card_id>/view")
 def card_settings(card_id):
-    if not current_user.is_authenticated:
-        return redirect("/")
+    # if not current_user.is_authenticated:
+    #     return redirect("/")
 
     db_sess = db_session.create_session()
     card = db_sess.query(Card).get(card_id)
 
     if not card or not current_user.is_get_card(card):
-        return redirect("/")
+        return redirect("<h1>BAD REQUEST</h1>")
 
-    form = CardForm()
-    if request.method == "GET":
-        form.name.data = card.name
-        form.phone.data = card.phone
+    # form = CardForm()
+    # if request.method == "GET":
+    #     form.name.data = card.name
+    #     form.phone.data = card.phone
+    #
+    # if form.validate_on_submit():
+    #     pass
 
-    if form.validate_on_submit():
-        pass
-
-    return render_template("card_settings.html", title=f"Карта #{card.id}", card=card, form=form)
+    return render_template("blocks/card_view.html", title=f"Карта #{card.id}", card=card)
 
 
 @flask_login.login_required
