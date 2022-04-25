@@ -1,17 +1,27 @@
 {% extends "base.html" %}
 
 {% block content %}
-
 <main class="main-layout">
     <h2>А вот тут карточки</h2>
     <div id="cards">
         {% for card in cards %}
-            <p>
+            <p style="border: 1px solid black; cursor: pointer;" class="card" data-card="{{ card.id }}">
                 {{ card.id }} <br/>
-                <a href="card/{{ card.id }}">{{ card.name }}</a>
+                {{ card.name }}
             </p>
         {% endfor %}
     </div>
 </main>
-
+<script>
+    $(".card").click(function(event) {
+        var elem = event.currentTarget;
+        var card_id = elem.getAttribute("data-card");
+        xhr = $.ajax(
+            '/card/' + card_id.trim() + '/view').done(
+            function(data) {
+                xhr = null
+                $("#test").html(data);
+            });
+    });
+</script>
 {% endblock %}
