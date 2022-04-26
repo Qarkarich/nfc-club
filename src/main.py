@@ -83,7 +83,7 @@ def login():
 
 
 @flask_login.login_required
-@app.route("/card/<int:card_id>/view")
+@app.route("/card/<int:card_id>/view", methods=["GET", "POST"])
 def card_settings(card_id):
     # if not current_user.is_authenticated:
     #     return redirect("/")
