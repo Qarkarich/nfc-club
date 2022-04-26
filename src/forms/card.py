@@ -7,7 +7,6 @@ class CardForm(FlaskForm):
     name = StringField("Название карты", validators=[DataRequired()])
     title = StringField("Заголовок карты")
     link = StringField("Сокращение ссылки")
-    link_title = StringField("Заголовок сайта-визитки")
     main = StringField("Основной текст")
     description = StringField("Дополнительный текст")
     phone = StringField("Номер телефона")

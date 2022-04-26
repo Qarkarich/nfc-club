@@ -98,6 +98,15 @@ def card_settings(card_id):
     if request.method == "GET":
         form.name.data = card.name
         form.phone.data = card.phone
+        form.title.data = card.title
+        form.link.data = card.link
+        form.main.data = card.main
+        form.description.data = card.description
+        form.mail.data = card.mail
+        form.site_vk.data = card.site_vk
+        form.site_instagram.data = card.site_instagram
+        form.site_telegram.data = card.site_telegram
+        form.site_discord.data = card.site_discord
 
     if form.validate_on_submit():
         if request.method == "POST":
@@ -105,7 +114,6 @@ def card_settings(card_id):
             card.phone = form.phone.data
             card.title = form.title.data
             card.link = form.link.data
-            card.link_title = form.link_title.data
             card.main = form.main.data
             card.description = form.description.data
             card.mail = form.mail.data
@@ -118,6 +126,14 @@ def card_settings(card_id):
         return redirect("/")
 
     return render_template("card_settings.html", title=f"Карта #{card.id}", card=card, form=form)
+
+
+@app.route("/card/<int:card_id>")
+def card(card_id):
+    db_sess = db_session.create_session()
+    card = db_sess.query(Card).get(card_id)
+
+    return render_template("card.html", title=card.title, card=card)
 
 
 @flask_login.login_required
