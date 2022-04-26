@@ -100,20 +100,21 @@ def card_settings(card_id):
         form.phone.data = card.phone
 
     if form.validate_on_submit():
-        card.name = form.name.data
-        card.phone = form.phone.data
-        card.title = form.title.data
-        card.link = form.link.data
-        card.link_title = form.link_title.data
-        card.main = form.main.data
-        card.description = form.description.data
-        card.mail = form.mail.data
-        card.site_vk = form.site_vk.data
-        card.site_instagram = form.site_instagram.data
-        card.site_telegram = form.site_telegram.data
-        card.site_discord = form.site_discord.data
-        
-        db_sess.commit()
+        if request.method == "POST":
+            card.name = form.name.data
+            card.phone = form.phone.data
+            card.title = form.title.data
+            card.link = form.link.data
+            card.link_title = form.link_title.data
+            card.main = form.main.data
+            card.description = form.description.data
+            card.mail = form.mail.data
+            card.site_vk = form.site_vk.data
+            card.site_instagram = form.site_instagram.data
+            card.site_telegram = form.site_telegram.data
+            card.site_discord = form.site_discord.data
+
+            db_sess.commit()
         return redirect("/")
 
     return render_template("card_settings.html", title=f"Карта #{card.id}", card=card, form=form)

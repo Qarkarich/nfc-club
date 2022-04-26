@@ -1,5 +1,3 @@
-{% extends "base.html" %}
-
 {% block content %}
 
 <main class="main-layout">
@@ -12,7 +10,7 @@
 
     <br>
 
-    <form action="" method="post">
+    <form action="/card/{{ card.id }}/view" method="post">
         {{ form.hidden_tag() }}
         <p>
             {{ form.name.label }}<br>
