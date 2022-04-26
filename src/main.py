@@ -3,7 +3,7 @@ from flask import Flask, render_template, redirect, request, abort
 from flask_login import LoginManager, login_user, logout_user, current_user
 from data import db_session
 from forms.user import RegisterForm, LoginForm, EditForm
-# from forms.card import CardForm
+from forms.card import CardForm
 from data.users import User
 from data.cards import Card
 
@@ -94,15 +94,29 @@ def card_settings(card_id):
     if not card or not current_user.is_get_card(card):
         return redirect("<h1>BAD REQUEST</h1>")
 
-    # form = CardForm()
-    # if request.method == "GET":
-    #     form.name.data = card.name
-    #     form.phone.data = card.phone
-    #
-    # if form.validate_on_submit():
-    #     pass
+    form = CardForm()
+    if request.method == "GET":
+        form.name.data = card.name
+        form.phone.data = card.phone
 
-    return render_template("blocks/card_view.html", title=f"Карта #{card.id}", card=card)
+    if form.validate_on_submit():
+        card.name = form.name.data
+        card.phone = form.phone.data
+        card.title = form.title.data
+        card.link = form.link.data
+        card.link_title = form.link_title.data
+        card.main = form.main.data
+        card.description = form.description.data
+        card.mail = form.mail.data
+        card.site_vk = form.site_vk.data
+        card.site_instagram = form.site_instagram.data
+        card.site_telegram = form.site_telegram.data
+        card.site_discord = form.site_discord.data
+        
+        db_sess.commit()
+        return redirect("/")
+
+    return render_template("card_settings.html", title=f"Карта #{card.id}", card=card, form=form)
 
 
 @flask_login.login_required
