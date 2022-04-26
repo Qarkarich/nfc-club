@@ -1,27 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+:root {
+    --light-clr: #E8E8E8;
+    --contrast-dark-clr: #6C7A89;
+    --item-lighter-fill: #C4C4C4;
+    --item-darker-fill: #95A5A6;
+}
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--light-clr);
+    padding: 0 20%;
+}
+
+h1 {
+    font-weight: 700;
+}
+
 .content-wrapper {
+    min-width: 60%;
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    margin: 2vh 0;
+}
+
+.content-wrapper hr {
     width: 100%;
-    padding: 20px;
+    border: 2px solid var(--contrast-dark-clr);
+    border-radius: 4px;
 }
 
-.menu {
-    width: 20%;
+#main-header {
+    width: 100%;
+}
+
+.nav-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.menu ul {
-    list-style: none;
-}
-
-.menu ul li {
-    border: 1px solid black;
-}
-
-a {
+.nav-elem {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    font-style: normal;
+    padding: 5px 20px;
+    margin: 9px;
+    background: none;
+    border: 5px solid var(--contrast-dark-clr);
     color: #000;
+    box-sizing: border-box;
+    border-radius: 100px;
+    white-space: nowrap;
+    transition: 0.1s;
+    cursor: pointer;
 }
 
-.main-layout {
-    width: 80%;
+.nav-elem:hover, .nav-elem:active {
+    background-color: var(--contrast-dark-clr);
+    color: #fff !important;
+    text-decoration: none;
+}
+
+#cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card:nth-child(1) {
+    margin: 0;
+}
+
+.card:nth-child(1n) {
+    background-color: var(--item-lighter-fill);
+}
+
+.card:nth-child(2n) {
+    background-color: var(--item-darker-fill);
+}
+
+.card:nth-child(3n) {
+    background-color: var(--contrast-dark-clr);
+}
+
+.card {
+    width: 35vw;
+    height: 35vh;
+    border-radius: 50px;
+    margin-top: -25vh;
+    border: none;
+}
+
+.card h1 {
+    color: var(--light-clr);
+}
+
+.card p {
+    width: 100%;
+    justify-content: space-around;
 }

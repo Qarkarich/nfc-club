@@ -12,9 +12,9 @@
     <title>{{title}}</title>
 </head>
 <body>
-{% include "blocks/header.html" %}
 <div class="content-wrapper">
-    {# % include "blocks/left-menu.html" % #}
+    {% include "blocks/header.html" %}
+    <hr>
     {% block content %}{% endblock %}
 </div>
 <script src="{{ url_for('static', filename='js/master.js') }}"></script>

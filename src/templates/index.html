@@ -2,17 +2,16 @@
 
 {% block content %}
 <main class="main-layout">
-    <h2>А вот тут карточки</h2>
     <div id="cards">
         {% for card in cards %}
-            <p style="border: 1px solid black; cursor: pointer;" class="card" data-card="{{ card.id }}">
-                {{ card.id }} <br/>
-                {{ card.name }}
-            </p>
+            <div class="card" data-card="{{ card.id }}">
+                <p>
+                    <h2>{{ card.name }}</h2>
+                    <span id="name-btn">ыофдлвы</span>
+                </p>
+            </div>
         {% endfor %}
     </div>
-    <div id="card-popup" class="card-popup hidden">
-
-    </div>
+    <div id="card-popup" class="card-popup hidden"></div>
 </main>
 {% endblock %}

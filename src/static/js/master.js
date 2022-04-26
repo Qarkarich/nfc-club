@@ -6,5 +6,7 @@ $(".card").click(function(event) {
         function(data) {
             xhr = null
             $("#card-popup").html(data);
+            
+            $("#card-popup").toggleClass("hidden");
         });
 });
