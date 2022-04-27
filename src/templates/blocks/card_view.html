@@ -1,3 +1,22 @@
-<div class="card-floating">
-    <h1>Карта #{{ card.id }}</h1>
+<div id="card-popup" class="hidden card-popup">
+    <h1>Карта #{{card.id}}</h1>
+
+    <hr>
+
+    <b>{{card.main}}</b>
+    {{card.description}}<br>
+    <hr>
+    Телефон: {{card.phone}}<br>
+    Email: {{card.mail}}<br>
+    <hr>
+    VK: {{card.site_vk}}<br>
+    Instagram: {{card.site_instagram}}<br>
+    Telegram: {{card.site_telegram}}<br>
+    Discord: {{card.site_discord}}
+    <br><br>
+    {% if current_user.is_authenticated and card.owner_id == current_user.id %}
+        <button id="edit-card">
+            Изменить
+        </button>
+    {% endif %}
 </div>

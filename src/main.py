@@ -125,7 +125,7 @@ def card_settings(card_id):
             db_sess.commit()
         return redirect("/")
 
-    return render_template("card_settings.html", title=f"Карта #{card.id}", card=card, form=form)
+    return render_template("blocks/card_settings.html", title=f"Карта #{card.id}", card=card, form=form)
 
 
 @app.route("/card/<int:card_id>")
@@ -133,7 +133,7 @@ def card(card_id):
     db_sess = db_session.create_session()
     card = db_sess.query(Card).get(card_id)
 
-    return render_template("card.html", title=card.title, card=card)
+    return render_template("blocks/card_view.html", title=card.title, card=card)
 
 
 @flask_login.login_required
