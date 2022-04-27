@@ -133,7 +133,8 @@ def card(card_id):
     db_sess = db_session.create_session()
     card = db_sess.query(Card).get(card_id)
 
-    return render_template("blocks/card_view.html", title=card.title, card=card)
+    return render_template("blocks/card_view2.html", title=card.title, card=card)
+
 
 
 @flask_login.login_required
