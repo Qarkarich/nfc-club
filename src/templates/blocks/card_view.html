@@ -1,22 +1,39 @@
 <div id="card-popup" class="hidden card-popup">
-    <h1>Карта #{{card.id}}</h1>
-
-    <hr>
-
-    <b>{{card.main}}</b>
-    {{card.description}}<br>
-    <hr>
-    Телефон: {{card.phone}}<br>
-    Email: {{card.mail}}<br>
-    <hr>
-    VK: {{card.site_vk}}<br>
-    Instagram: {{card.site_instagram}}<br>
-    Telegram: {{card.site_telegram}}<br>
-    Discord: {{card.site_discord}}
-    <br><br>
-    {% if current_user.is_authenticated and card.owner_id == current_user.id %}
-        <button id="edit-card">
-            Изменить
-        </button>
-    {% endif %}
+    <div id="card-header" class="row">
+        <ul class="card-wrapper">
+            <li><h1>Карта #{{card.id}}</h1></li>
+        {% if current_user.is_authenticated and card.owner_id == current_user.id %}
+            <li><button id="edit-card">
+                Изменить
+            </button></li>
+        {% endif %}
+    </div>
+    <div id="card-content" class="row">
+        <div id="card-content-left" class="col">
+            <img id="cardholder-img" src="{{ url_for('static', filename='img/default.png') }}" alt="">
+            <span>
+                <h3 id="cardholder-name">{{ card.main }}</h3>
+            </span>
+            <span>
+                <a href="{{ card.site_vk }}">VK</a>
+                <a href="{{ card.site_instagram }}">Instagram</a>
+                <a href="{{ card.site_telegram }}">Telegram</a>
+                <a href="{{ card.site_discord }}">Discord</a>
+            </span>
+        </div>
+        <div id="card-content-right" class="col">
+            <span>
+                <h4>информация</h4>
+                <p>{{ card.description }}</p>
+            </span>
+            <span>
+                <h4>телефон</h4>
+                <p>{{ card.phone }}</p>
+            </span>
+            <span>
+                <h4>email</h4>
+                <p>{{ card.mail }}</p>
+            </span>
+        </div>
+    </div>
 </div>
