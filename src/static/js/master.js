@@ -9,7 +9,7 @@ $(".card").click(function(event) {
             $("#fadeout").show(200);
             $("#card-popup").fadeTo(200, 1);
 
-            $("#edit-card").click(function(event) {
+            $(".edit-card").click(function(event) {
                 xhr = $.ajax(
                     '/card/' + card_id.trim() + '/view').done(function(data) {
                         $("#card-popup").html(data);

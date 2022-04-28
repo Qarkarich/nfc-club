@@ -2,10 +2,16 @@
 
 {% block content %}
 
-<div>
-    <h1>Мой профиль</h1>
-    <h2>Имя: {{ current_user.name }}</h2>
-    <h3>Почта: {{ current_user.email }}</h3>
+<div id="profile-block">
+    <h2>мой профиль</h2>
+    <span>
+        <h3>имя</h3>
+        {{ current_user.name }}
+    </span>
+    <span>
+        <h3>почта</h3>
+        {{ current_user.email }}
+    </span>
     <a href="/profile/edit"><h3>Редактировать профиль</h3></a>
 </div>
 

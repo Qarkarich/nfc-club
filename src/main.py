@@ -108,21 +108,21 @@ def card_settings(card_id):
         form.site_telegram.data = card.site_telegram
         form.site_discord.data = card.site_discord
 
-    if form.validate_on_submit():
-        if request.method == "POST":
-            card.name = form.name.data
-            card.phone = form.phone.data
-            card.title = form.title.data
-            card.link = form.link.data
-            card.main = form.main.data
-            card.description = form.description.data
-            card.mail = form.mail.data
-            card.site_vk = form.site_vk.data
-            card.site_instagram = form.site_instagram.data
-            card.site_telegram = form.site_telegram.data
-            card.site_discord = form.site_discord.data
+    if request.method == "POST":
+        card.name = form.name.data
+        card.phone = form.phone.data
+        card.title = form.title.data
+        card.link = form.link.data
+        card.main = form.main.data
+        card.description = form.description.data
+        card.mail = form.mail.data
+        card.site_vk = form.site_vk.data
+        card.site_instagram = form.site_instagram.data
+        card.site_telegram = form.site_telegram.data
+        card.site_discord = form.site_discord.data
 
-            db_sess.commit()
+        db_sess.commit()
+
         return redirect("/")
 
     return render_template("blocks/card_settings.html", title=f"Карта #{card.id}", card=card, form=form)
@@ -133,7 +133,7 @@ def card(card_id):
     db_sess = db_session.create_session()
     card = db_sess.query(Card).get(card_id)
 
-    return render_template("blocks/card_view2.html", title=card.title, card=card)
+    return render_template("blocks/card_view.html", title=card.title, card=card)
 
 
 
