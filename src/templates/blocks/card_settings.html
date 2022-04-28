@@ -28,7 +28,6 @@
                 <a href="{{ card.site_telegram }}">Telegram</a>
                 <a href="{{ card.site_discord }}">Discord</a>
             </span> -->
-            <p>{{ form.submit(type="submit", class="sbmt-btn") }}</p>
         </div>
         <div id="card-content-right" class="col">
             <span>
@@ -58,6 +57,7 @@
                     </p>
                 {% endfor %}
             </span>
+            <p>{{ form.submit(type="submit", class="sbmt-btn") }}</p>
         </div>
     </div>
 </form>

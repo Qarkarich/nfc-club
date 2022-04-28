@@ -196,6 +196,7 @@ h1 {
 #card-content-right {
     height: max-content;
     flex-grow: 2;
+    margin-left: 25px;
 }
 
 #card-content-right p {
@@ -203,9 +204,9 @@ h1 {
     letter-spacing: 0.1em;
 }
 
-/* #card-header .card-wrapper {
-    padding: 0 7%;
-} */
+#card-header .card-wrapper {
+    padding: auto 7%;
+}
 
 .col {
     margin: 0;
@@ -231,7 +232,12 @@ h4 {
 .card-edit-input {
     background: #E8E8E8;
     border: 1px solid var(--item-darker-fill);
-    border-radius: 5px;
+    border-radius: 0.25rem;
+    font-family: inherit;
+    font-size: inherit; 
+    line-height: inherit;
+    padding: 0.5rem;
+    margin: 5px 0;
 }
 
 #profile-block {
@@ -251,6 +257,16 @@ h4 {
 #profile-block h2 {
     color: var(--light-clr);
     font-weight: bold;
+}
+
+#submit {
+    color: var(--light-clr);
+    background-color: var(--contrast-dark-clr);
+    border-radius: 2rem;
+    border: none;
+    padding: 0.5rem 1rem;
+    text-transform: lowercase;
+    transition: 0.1s;
 }
 
 
@@ -296,11 +312,19 @@ h4 {
 
     .card-popup {
         width: 100%;
+        height: auto;
         border-radius: 15px;
     }
     
     #card-header {
-        height: 15%;
         border-radius: 15px 15px 0 0;
     }
+
+    #card-content-right {
+        margin: 15px 0;
+    }
+
+    /* #card-header .card-wrapper {
+        padding: 5% 7%;
+    } */
 }
