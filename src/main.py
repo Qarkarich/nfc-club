@@ -1,5 +1,6 @@
 import flask_login
-from flask import Flask, render_template, redirect, request, abort
+import flask
+from flask import Flask, render_template, redirect, request, abort, jsonify
 from flask_login import LoginManager, login_user, logout_user, current_user
 from data import db_session
 from forms.user import RegisterForm, LoginForm, EditForm
@@ -11,10 +12,32 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = "qwaszxer"
 login_manager = LoginManager()
 
+blueprint = flask.Blueprint(
+    'app_api',
+    __name__,
+    template_folder='templates'
+)
+
 
 @app.errorhandler(404)
 def not_found_error(error):
     return redirect("/")
+
+
+@blueprint.route('/api/card_add', methods=['POST', 'GET'])
+def add_card():
+    if not request.json:
+        return jsonify({'error': 'Empty request'})
+
+    if not all(key in request.json for key in ['owner_id']):
+        return jsonify({'error': 'Bad request'})
+
+    db_sess = db_session.create_session()
+    new_card = Card(owner_id=request.json['owner_id'])
+    db_sess.add(new_card)
+    db_sess.commit()
+
+    return jsonify({'success': 'OK'})
 
 
 @login_manager.user_loader
@@ -186,6 +209,7 @@ def edit_profile():
 
 def main():
     db_session.global_init("db/main.sqlite")
+    app.register_blueprint(blueprint)
     login_manager.init_app(app)
     app.run(host="127.0.0.1", port=8080)
 
