@@ -1,0 +1,57 @@
+ <form action="/card/{{ card.id }}/view" method="post">
+    {{ form.hidden_tag() }}
+    <div id="card-header" class="row">
+        <ul class="card-wrapper">
+            <li>{{ form.name(class="card-edit-input") }}
+                {% for error in form.name.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}</li>
+        </ul>
+    </div>
+    <div id="card-content" class="row">
+        <div id="card-content-left" class="col">
+            <img id="cardholder-img" src="{{ url_for('static', filename='img/default.png') }}" alt="">
+            <br>
+            <span>
+                {{ form.main(class="card-edit-input") }}
+                {% for error in form.main.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </span>
+        </div>
+        <div id="card-content-right" class="col">
+            <span>
+                <h4>информация</h4>
+                {{ form.description(class="card-edit-input") }}
+                {% for error in form.description.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </span>
+            <span>
+                <h4>телефон</h4>
+                {{ form.phone(class="card-edit-input") }}
+                {% for error in form.phone.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </span>
+            <span>
+                <h4>email</h4>
+                {{ form.mail(class="card-edit-input") }}
+                {% for error in form.mail.errors %}
+                    <p class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </span>
+            <p>{{ form.submit(type="submit", class="sbmt-btn") }}</p>
+        </div>
+    </div>
+</form>

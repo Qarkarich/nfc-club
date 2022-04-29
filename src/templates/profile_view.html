@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div id="profile-block">
+    <h1>мой профиль</h1>
+    <span>
+        <h4>имя</h4>
+        <p>{{ current_user.name }}</p>
+    </span>
+    <span>
+        <h4>почта</h4>
+        <p>{{ current_user.email }}</p>
+    </span>
+    <span>
+        <a href="/profile/edit" id="submit">Редактировать профиль</a>
+        <a href="/logout" id="submit">Выйти из аккаунта</a>
+    </span>
+</div>
+
+{% endblock %}

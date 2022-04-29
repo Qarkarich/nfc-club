@@ -1,0 +1,36 @@
+<div id="card-popup" class="hidden card-popup">
+    <div id="card-header" class="row">
+        <ul class="card-wrapper">
+            <li><h1>{{ card.name }}</li>
+        {% if current_user.is_authenticated and card.owner_id == current_user.id %}
+            <li>
+                <svg class="edit-card" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="m453.7 133-286 289.6-71.6-75L380.9 59.2c9-9.1 24.8-9 33.7.1l39.2 40.3c9 9.2 8.9 24.2-.1 33.4zM78 387.4l49.1 51.5-66.9 14.5 17.8-66zM482.8 71.1l-39.2-40.3C430.3 16 388.7-5 352.1 30.4L53.4 332.9c-2.5 2.5-4.3 5.6-5.2 9L12.2 475c-4.6 17 4.2 27.5 19.6 25.7 1.4-.2 140.9-30.1 140.9-30.1 3.8-.8 7.3-2.8 10.1-5.6l299.6-303.4c24.6-24.8 24.8-65.4.4-90.5z"/>
+                </svg>  
+            </li>
+        {% endif %}
+    </div>
+    <div id="card-content" class="row">
+        <div id="card-content-left" class="col">
+            <img id="cardholder-img" src="{{ url_for('static', filename='img/default.png') }}" alt="">
+            <br>
+            <span>
+                <h3 id="cardholder-name">{{ card.main }}</h3>
+            </span>
+        </div>
+        <div id="card-content-right" class="col">
+            <span>
+                <h4>информация</h4>
+                <p>{{ card.description }}</p>
+            </span>
+            <span>
+                <h4>телефон</h4>
+                <p>{{ card.phone }}</p>
+            </span>
+            <span>
+                <h4>email</h4>
+                <p>{{ card.mail }}</p>
+            </span>
+        </div>
+    </div>
+</div>
