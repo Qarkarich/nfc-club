@@ -3,16 +3,19 @@
 {% block content %}
 
 <div id="profile-block">
-    <h2>мой профиль</h2>
+    <h1>мой профиль</h1>
     <span>
-        <h3>имя</h3>
-        {{ current_user.name }}
+        <h4>имя</h4>
+        <p>{{ current_user.name }}</p>
     </span>
     <span>
-        <h3>почта</h3>
-        {{ current_user.email }}
+        <h4>почта</h4>
+        <p>{{ current_user.email }}</p>
     </span>
-    <a href="/profile/edit"><h3>Редактировать профиль</h3></a>
+    <span>
+        <a href="/profile/edit" id="submit">Редактировать профиль</a>
+        <a href="/logout" id="submit">Выйти из аккаунта</a>
+    </span>
 </div>
 
 {% endblock %}

@@ -125,7 +125,8 @@ def card_settings(card_id):
 
         return redirect("/")
 
-    return render_template("blocks/card_settings.html", title=f"Карта #{card.id}", card=card, form=form)
+    return render_template("blocks/card_settings.html", title=f"Карта #{card.id}", card=card,
+                           form=form)
 
 
 @app.route("/card/<int:card_id>")
@@ -136,10 +137,11 @@ def card(card_id):
     return render_template("blocks/card_view.html", title=card.title, card=card)
 
 
-
 @flask_login.login_required
 @app.route("/profile")
 def check_profile():
+    if not current_user.is_authenticated:
+        return redirect("/")
     return render_template("profile_view.html", title=f"Просмотр профиля", user=current_user)
 
 
